@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Appreciate, Mourn} = require('../server/db/models')
+const {User, Appreciate, Mourn, Intention} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -22,9 +22,15 @@ async function seed() {
     Mourn.create({target: 'Pat Mullen // Tish Burnham', notes: 'the strong irish broad still holds on to the last moments of existence, but her youth and her full cognition are behind her. godbless all her strength, stamina, and sweetness', tags:['family', 'death', 'aging', 'irish']})
   ])
 
+  const intentions = await Promise.all([
+    Intention.create({target:'to finish this stackathon project', notes:'there has been a number of failures and dead ends and existential decision making crises but i am holding strong', tags: ['who am i', 'existential', 'individual projects']}), 
+    Intention.create({target: 'to engage in self-encouragement instead of self-loathing', notes: 'if meaning is constructed and your conscious experience of life is determined by your perceptual narrative, than you must write your self a winning story in order for such to come true', tags: ['perception', 'constructed identity', 'constructed reality', 'narrative']})
+  ])
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${appreciates.length} appreciates`)
   console.log(`seeded ${mourns.length} mourns `)
+  console.log(`seeded ${intentions.length} intentions`)
   console.log(`seeded successfully`)
 }
 

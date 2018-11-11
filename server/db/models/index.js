@@ -1,6 +1,7 @@
 const User = require('./user')
 const Appreciate = require('./appreciate')
 const Mourn = require('./mourn')
+const Intention = require('./intention')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,5 +19,6 @@ const Mourn = require('./mourn')
 module.exports = {
   User, 
   Appreciate, 
-  Mourn
+  Mourn, 
+  Intention
 }

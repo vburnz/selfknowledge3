@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: rgb(255, 105, 180); 
 }
 
 a {
@@ -24,3 +25,11 @@ form div {
   /* background-color: gray;  */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
+.container { 
+  display: flex; 
+  flex-direction: column; 
+  flex-flow: center; 
+}
+/* .sketch { 
+  align-self: center; 
+} */

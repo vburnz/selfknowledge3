@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import P5Wrapper from 'react-p5-wrapper'
 import {getAppreciate} from '../store'
+import sketch from '../sketches/appreciate'
 
 class Appreciate extends Component { 
     componentDidMount(){ 
@@ -12,7 +14,8 @@ class Appreciate extends Component {
         return (
             this.props.appreciate ? 
             (
-            <div>
+            <div className ="appreciate container">
+                <P5Wrapper sketch={sketch}/>
                 <table>
                     <tbody>
                         <tr>
