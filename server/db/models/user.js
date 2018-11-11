@@ -26,6 +26,30 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  }, 
+  birthMonth: { 
+    type: Sequelize.INTEGER
+  }, 
+  birthDay: { 
+    type: Sequelize.INTEGER
+  }, 
+  birthYear: { 
+    type: Sequelize.INTEGER
+  }, 
+  birthHour: { 
+    type: Sequelize.INTEGER
+  }, 
+  birthMin: { 
+    type: Sequelize.INTEGER
+  }, 
+  birthLat: { 
+    type: Sequelize.DECIMAL
+  }, 
+  birthLong: { 
+    type: Sequelize.DECIMAL
+  }, 
+  birthTzone: { 
+    type: Sequelize.DECIMAL
   }
 })
 
