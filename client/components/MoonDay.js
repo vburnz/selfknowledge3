@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import P5Wrapper from 'react-p5-wrapper'
 import sketch from '../sketches/cycle'
 import {setCycleNum} from '../store'
@@ -13,6 +13,7 @@ class MoonDay extends Component {
             today: '2018-11-12', 
             moonType: null, 
             moonMessage: null, 
+            buttonTitle: "What has this cycle been like so far?",
             cycleDay: 6, 
             cycleNumber: 1
         }
@@ -21,25 +22,25 @@ class MoonDay extends Component {
     handleClick(event){ 
         if (event.target.value === "2018-11-07"){ 
             this.props.setCycleNum(1)
-            this.setState({moonType: 'New', cycleDay: 1, cycleNumber: 1})
+            this.setState({moonType: 'New', cycleDay: 1, cycleNumber: 1, buttonTitle:'What serves you?'})
             this.setState({moonMessage: 'New Moons are excellent times for deciding what no longer serves you and for starting anew'})
         } else if (event.target.value === "2018-11-23"){ 
             this.props.setCycleNum(1)
-            this.setState({moonType: 'Full', cycleDay:14, cycleNumber:1})
+            this.setState({moonType: 'Full', cycleDay:14, cycleNumber:1, buttonTitle:'What have you harvested?'})
             this.setState({moonMessage: 'Full Moons are great times for abundance, manifestation, and harvest! What have you harvested this Month?'})
         }
         else if (event.target.value === "2018-12-07"){ 
-            console.log('event target', event.target.value); 
+            //console.log('event target', event.target.value); 
             this.props.setCycleNum(2)
-            this.setState({moonType: 'New', cycleDay: 1, cycleNumber: 2})
+            this.setState({moonType: 'New', cycleDay: 1, cycleNumber: 2, buttonTitle:'What serves you?'})
             this.setState({moonMessage: 'New Moons are excellent times for deciding what no longer serves you and for starting anew'})
         } else if (event.target.value === "2018-12-23"){ 
             this.props.setCycleNum(2)
-            this.setState({moonType: 'Full', cycleDay:14, cycleNumber:2})
+            this.setState({moonType: 'Full', cycleDay:14, cycleNumber:2, buttonTitle:'What have you harvested?'})
             this.setState({moonMessage: 'Full Moons are great times for abundance, manifestation, and harvest! What have you harvested this Month?'})
         }
         else { 
-            this.setState({moonType: null})
+            this.setState({moonType: null, buttonTitle:"What has this cycle been like so far?"})
         }
         
         this.setState({today: event.target.value})
@@ -60,7 +61,7 @@ class MoonDay extends Component {
 
                 <h2>Today is {this.state.today}</h2>
                 <button type="button" value="2018-11-07" onClick={this.handleClick}>New Moon 1</button>
-                <button type="buttom" value="2018-11-12" onClick={() => { this.setState({ today: '2018-11-12', moonType: null, moonMessage: null, cycleDay: 6})}}>Today</button>
+                <button type="buttom" value="2018-11-12" onClick={() => { this.setState({ today: '2018-11-12', moonType: null, moonMessage: null, cycleDay: 6, buttonTitle:"What has this cycle been like so far?"})}}>Today</button>
                 <button type="button" value="2018-11-23" onClick={this.handleClick}>Full Moon 1</button>
 
                 <button type="button" value="2018-12-07" onClick={this.handleClick}>New Moon 2</button>
@@ -74,6 +75,8 @@ class MoonDay extends Component {
                 (   <div>
                         <div>Today is a {this.state.moonType} Moon!</div>
                         <div>{this.state.moonMessage}</div>
+                        
+                        
                     </div>
                 )
                 : 
@@ -81,6 +84,8 @@ class MoonDay extends Component {
 
                 {(this.state.cycleDay > 14) ? (<div>There are {28-this.state.cycleDay} days left until the next New Moon</div>) : null}
                 {(this.state.cycleDay < 14 && this.state.cycleDay > 1) ? (<div>There are {14-this.state.cycleDay} days left until the next Full Moon</div>) : null}
+                    
+                <Link to={{pathname: "/summary", state:{moonType: this.state.moonType}}}><button type="button">{this.state.buttonTitle}</button></Link>
                             
 
 
