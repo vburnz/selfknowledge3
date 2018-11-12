@@ -11,7 +11,6 @@ router.get('/', async(req, res, next) => {
 })
 
 router.post('/', async(req, res, next) => { 
-    console.log(req.body); 
     Mourn.create(req.body)
         .then(mourn => { 
             res.status(201).json(mourn)

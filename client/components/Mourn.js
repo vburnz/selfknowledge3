@@ -14,8 +14,7 @@ class Mourn extends Component {
             target: '', 
             notes: '', 
             tags: [], 
-            tagInput: '', 
-            mournsThisCycle: 0, 
+            tagInput: ''
         }
         this.handleSubmit= this.handleSubmit.bind(this); 
     }

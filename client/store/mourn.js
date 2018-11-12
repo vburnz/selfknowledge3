@@ -35,8 +35,7 @@ export const getMourn = () => async dispatch => {
 
 export const addMourn = (mourn) => async dispatch => { 
     try {
-        const res = await axios.post('/api/mourn', mourn)
-        console.log('res.data', res); 
+        const res = await axios.post('/api/mourn', mourn) 
         dispatch(addedMourn(res.data))
     } catch (error) {
         console.error(error)

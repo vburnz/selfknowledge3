@@ -10,3 +10,11 @@ router.get('/', async(req, res, next) => {
         .catch(next)
 })
 
+router.post('/', async(req, res, next) => { 
+    Intention.create(req.body)
+        .then(intention => { 
+            res.status(201).json(intention)
+        })
+        .catch(next)
+})
+

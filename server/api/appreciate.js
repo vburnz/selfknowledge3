@@ -10,3 +10,11 @@ router.get('/', async(req, res, next) => {
         .catch(next)
 })
 
+router.post('/', async(req, res, next) => { 
+    Appreciate.create(req.body)
+        .then(appreciate => { 
+            res.status(201).json(appreciate)
+        })
+        .catch(next)
+})
+
