@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import P5Wrapper from 'react-p5-wrapper'
-import {getAppreciate, addAppreciate} from '../store'
-import sketch from '../sketches/appreciate'
+import {getIntention, addIntention} from '../store'
+import sketch from '../sketches/intention'
 
-class Appreciate extends Component { 
+class Intention extends Component { 
     constructor(){ 
         super(); 
         this.state = { 
@@ -19,22 +19,14 @@ class Appreciate extends Component {
         this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
+        console.log('this.props', this.props)
         this.setState({cycleId: this.props.cycleNum})
-        this.props.getAppreciate(this.props.cycleNum); 
-        console.log('cycleNum', this.props.cycleNum); 
-        
+        this.props.getIntention(this.props.cycleNum); 
 
     }
     handleSubmit(event){ 
         event.preventDefault(); 
-        // console.log(this.state.tagInput)
-        // let tags = []
-        // tags = this.state.tagInput.split(', '); 
-        // console.log('tagssss', tags); 
-        // this.setState({tags: tags})
-        // console.log(this.state); 
-        // this.props.addMourn({...this.state, tags}); 
-        this.props.addAppreciate(this.state); 
+        this.props.addIntention(this.state); 
         this.setState({
             // date: '', 
             target: '', 
@@ -44,12 +36,12 @@ class Appreciate extends Component {
     }
     render(){ 
         return (
-            this.props.appreciate ? 
+            this.props.intention ? 
             (
-            <div className ="appreciate container">
-                <P5Wrapper sketch={sketch} appreciates={this.props.appreciate.length}/>
-                <div>{this.props.appreciate.length} / 5 appreciations this cycle</div>
-                {(this.props.appreciate.length >= 5) ? (<div>APPRECIATE FILLED</div>) : (null) }
+            <div className="intention container">
+                <P5Wrapper sketch={sketch} className="sketch" intentions={this.props.intention.length}/>
+                <div>{this.props.intention.length} / 5 intentions this cycle</div>
+                {(this.props.intention.length >= 5) ? (<div>INTENTION FILLED</div>) : (null) }
                 <table>
                     <tbody>
                         <tr>
@@ -58,13 +50,13 @@ class Appreciate extends Component {
                             <th>Notes</th>
                             <th>Tags</th>
                         </tr>
-                        {this.props.appreciate.map(appreciate => { 
+                        {this.props.intention.map(intention => { 
                         return (
-                            <tr key={appreciate.id}>
-                                <td>{appreciate.date}</td>
-                                <td>{appreciate.target}</td>
-                                <td>{appreciate.notes}</td>
-                                <td>{appreciate.tags.join(', ')}</td>
+                            <tr key={intention.id}>
+                                <td>{intention.date}</td>
+                                <td>{intention.target}</td>
+                                <td>{intention.notes}</td>
+                                <td>{intention.tags.join(', ')}</td>
                             </tr>
                         )})}
                     </tbody>
@@ -74,7 +66,7 @@ class Appreciate extends Component {
                     Target<input type="text" value={this.state.target} onChange={event => this.setState({ target: event.target.value })}/>
                     Notes<input type="text" value={this.state.notes} onChange={event => this.setState({ notes: event.target.value })}/>
                     {/* Tags<input type="text" value={this.state.tagInput} onChange={event => this.setState({ tagInput: event.target.value })}/> */}
-                    <button type="submit" onClick={this.handleSubmit}>Appreciate</button>
+                    <button type="submit" onClick={this.handleSubmit}>Intention</button>
                 </form>
             </div>
             )
@@ -86,13 +78,13 @@ class Appreciate extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    appreciate: state.appreciate.appreciate, 
+    intention: state.intention.intention, 
     cycleNum: state.cycle.cycleNum
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getAppreciate: (cycleNum) => dispatch(getAppreciate(cycleNum)),
-    addAppreciate: (appreciate) => dispatch(addAppreciate(appreciate))
+    getIntention: (cycleNum) => dispatch(getIntention(cycleNum)), 
+    addIntention: (intention) => dispatch(addIntention(intention)), 
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Appreciate)); 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Intention)); 

@@ -1,18 +1,57 @@
 export default function sketch (p){ 
+  //const mourns = props.mourns; 
 
   var imgDraw = false; 
   var width = 300; 
   var height = 300; 
+  let mourn = false; 
+  let mournscale = 0; 
+  let clear = false; 
 
   p.setup = function(){ 
     p.createCanvas(width, height); 
-    p.background(0)
+    p.background(255, 105, 180); 
   }
   
+  p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    console.log('props', props); 
+      if (props.mourns > 0){
+        mourn = true; 
+      }
+      //let mourns; 
+      if (props.mourns >=5) { 
+        mournscale = 200;
+      } else if (props.mourns === 4){ 
+        mournscale = 125; 
+      }
+      else if (props.mourns === 3){ 
+        mournscale = 100; 
+      }
+      else if (props.mourns === 2){ 
+        mournscale = 75; 
+      }
+      else if (props.mourns === 1){ 
+        mournscale = 50; 
+      }
+      // switch(mourns){ 
+      //   case 1: 
+      //     mournscale = 50
+      //   case 2: 
+      //     mournscale = 75
+      //   case 3: 
+      //     mournscale = 100
+      //   case 4: 
+      //     mournscale = 200
+      //   case 5: 
+      //     mournscale = 0; 
+      // }
+    };
   p.draw = function (){  
     var img = p.createImage(width, height); 
     img.loadPixels();
     
+  
+
     function writeColor(image, x, y, green, blue, alpha) { 
       var index = (x + y * width) * 4; 
       image.pixels[index] = red; 
@@ -40,75 +79,64 @@ export default function sketch (p){
 
 
     var x, y; 
-    
-    // let num = img.width/2; //4
-
     let num = img.width/2;  
 
-    //should make this one big 
-    //with ifs inside the y --> directs to diff x loops 
-
-    for (y = img.height/2; y < (4*img.height/5); y++){
-      for (x = num; x<img.width-num; x++){ 
-        if (p.random() > 0.8){ 
-          var red = p.random(255)  
-          var green = 200
-          var blue = 200; 
-          var alpha = 255; 
-          writeColor(img, x, y, red, green, blue, alpha)
-        }
-      }
-      num-=1.1; 
-    }
-
-    for (y = (3*img.height/4); y < img.height-10; y++){
-      for (x = (num*1.2); x<img.width-(num*1.2); x++){ 
-        if (p.random() > 0.8){ 
-          var red = p.random(255)  
-          var green = 200
-          var blue = 200; 
-          var alpha = 255; 
-          writeColor(img, x, y, red, green, blue, alpha)
-        }
-      }
-
-    }
-    
-    // for (y = img.height/2+35+5; y < img.height; y++){
-    //   num+=1
-    //   for (x = num; x<img.width-num; x++){ 
-    //     if (p.random() > 0.8){ 
-    //       var red = p.random(255)  
-    //       var green = 200
-    //       var blue = 200; 
-    //       var alpha = 255; 
-    //       writeColor(img, x, y, red, green, blue, alpha)
+    // if (!clear){ 
+    //   for (y = img.height/2; y < img.height; y++){ 
+    //     num-=1; 
+    //     for (x = num; x<img.width-num; x++){ 
+    //       // if (p.random() > 0.8){ 
+    //         var red = 100;
+    //         var green = 100; 
+    //         var blue = 255; 
+    //         var alpha = 255; 
+    //         writeColor(img, x, y, red, green, blue, alpha)
+    //       // }
     //     }
     //   }
-
+    //   clear = true; 
     // }
+    if (mourn){ 
+      for (y = img.height/2; y < img.height; y++){ 
+         
+        if (y > img.height-mournscale){ 
+          num-=0.5;
+        
+          for (x = num; x<img.width-num; x++){ 
+            if (p.random() > 0.8){ 
+              var red = p.random(255);  
+              var green = 200; 
+              var blue = 200; 
+              var alpha = 255; 
+              writeColor(img, x, y, red ,green, blue, alpha)
+            }
+          }
+        } else { 
+      // for (y = img.height/2; y < img.height; y++){ 
+          num-=1; 
+          for (x = num; x<img.width-num; x++){ 
+            // if (p.random() > 0.8){ 
+              var red = 100;
+              var green = 100; 
+              var blue = 255; 
+              var alpha = 255; 
+              writeColor(img, x, y, red, green, blue, alpha)
+            // }
+          }
+      // }
+        }
+      }
+    }
 
+    
+  
     for (y = img.height/2; y < img.height; y++){ 
       for (x = 0; x<img.width; x++){ 
         heating(img); 
         cooling(img); 
       }
     }
-
-    //draw a red line
-    y = 0; 
-    for (x = 0; x < img.width; x++){ 
-      writeColor(img, x, y, 255, 0, 0, 255)
-    }
-
-    //draw a green line 
-    y = 0; 
-    for (x = 0; x < img.width; x++) { 
-      writeColor(img, x, y, 255, 0, 0, 255)
-    }
-
-    
-
+  
 
 
     img.updatePixels(); 

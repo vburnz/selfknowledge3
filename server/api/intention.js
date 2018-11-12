@@ -1,31 +1,31 @@
 const router = require('express').Router()
-const {Appreciate} = require('../db/models')
+const {Intention} = require('../db/models')
 module.exports = router
 
 router.get('/', async(req, res, next) => { 
-    Appreciate.findAll()
-        .then(appreciate => {
-            res.status(200).json(appreciate)
+    Intention.findAll()
+        .then(intention => {
+            res.status(200).json(intention)
         })
         .catch(next)
 })
 
 router.get('/:cycleNum', async(req, res, next) => { 
-    Appreciate.findAll({
+    Intention.findAll({ 
         where: { 
             cycleId: req.params.cycleNum
         }
     })
-        .then(appreciate => {
-            res.status(200).json(appreciate)
+        .then(intention => {
+            res.status(200).json(intention)
         })
         .catch(next)
 })
 
 router.post('/', async(req, res, next) => { 
-    Appreciate.create(req.body)
-        .then(appreciate => { 
-            res.status(201).json(appreciate)
+    Intention.create(req.body)
+        .then(intention => { 
+            res.status(201).json(intention)
         })
         .catch(next)
 })
