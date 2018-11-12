@@ -1,25 +1,28 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import P5Wrapper from 'react-p5-wrapper'
+import sketch from '../sketches/cycle'
 
 
 export default class MoonDay extends Component { 
     constructor(){ 
         super(); 
         this.state = { 
-            today: '2018-11-07', 
+            today: '2018-11-12', 
             moonType: null, 
-            moonMessage: null
+            moonMessage: null, 
+            cycleDay: 6
         }
         this.handleClick = this.handleClick.bind(this); 
     }
     handleClick(event){ 
         if (event.target.value === ("2018-11-07" || "2018-12-07" || "2019-01-05")){ 
-            this.setState({moonType: 'New'})
+            this.setState({moonType: 'New', cycleDay: 1})
             this.setState({moonMessage: 'New Moons are excellent times for deciding what no longer serves you and for starting anew'})
         } else if (event.target.value === ("2018-11-23" || "2018-12-23" || "2019-01-21")){ 
             this.setState({moonType: 'Full'})
-            this.setState({moonMessage: 'Full Moons are great times for abundance, manifestation, and harvest! What have you harvested this Month?'})
+            this.setState({moonMessage: 'Full Moons are great times for abundance, manifestation, and harvest! What have you harvested this Month?', cycleDay:14})
         }
         else { 
             this.setState({moonType: null})
@@ -37,6 +40,7 @@ export default class MoonDay extends Component {
     render(){
         return (
             <div>
+                <P5Wrapper sketch={sketch} day={this.state.cycleDay}/>
 
                 <h2>Today is {this.state.today}</h2>
                 <button type="button" value="2018-11-07" onClick={this.handleClick}>New Moon 1</button>
