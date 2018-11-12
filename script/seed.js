@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Appreciate, Mourn, Intention} = require('../server/db/models')
+const {User, Appreciate, Mourn, Intention, Moon} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -27,10 +27,100 @@ async function seed() {
     Intention.create({target: 'to engage in self-encouragement instead of self-loathing', notes: 'if meaning is constructed and your conscious experience of life is determined by your perceptual narrative, than you must write your self a winning story in order for such to come true', tags: ['perception', 'constructed identity', 'constructed reality', 'narrative']})
   ])
 
+  const moons = await Promise.all([
+    Moon.create({date: '2018-11-07', moonPhase: 1, moonPhaseDay: 1}), 
+    Moon.create({date: '2018-11-08', moonPhase: 1, moonPhaseDay: 2}),
+    Moon.create({date: '2018-11-09', moonPhase: 1, moonPhaseDay: 3}),
+    Moon.create({date: '2018-11-10', moonPhase: 1, moonPhaseDay: 4}),
+    Moon.create({date: '2018-11-11', moonPhase: 1, moonPhaseDay: 5}),
+    Moon.create({date: '2018-11-12', moonPhase: 1, moonPhaseDay: 6}),
+    Moon.create({date: '2018-11-13', moonPhase: 1, moonPhaseDay: 7}),
+    Moon.create({date: '2018-11-14', moonPhase: 1, moonPhaseDay: 8}),
+    Moon.create({date: '2018-11-15', moonPhase: 1, moonPhaseDay: 9}),
+    Moon.create({date: '2018-11-16', moonPhase: 1, moonPhaseDay: 10}),
+    Moon.create({date: '2018-11-17', moonPhase: 1, moonPhaseDay: 11}),
+    Moon.create({date: '2018-11-18', moonPhase: 1, moonPhaseDay: 12}),
+    Moon.create({date: '2018-11-19', moonPhase: 1, moonPhaseDay: 13}),
+    Moon.create({date: '2018-11-20', moonPhase: 1, moonPhaseDay: 14}),
+    Moon.create({date: '2018-11-21', moonPhase: 1, moonPhaseDay: 15}),
+    Moon.create({date: '2018-11-22', moonPhase: 1, moonPhaseDay: 16}),
+    Moon.create({date: '2018-11-23', moonPhase: 1, moonPhaseDay: 17}),
+    Moon.create({date: '2018-11-24', moonPhase: 1, moonPhaseDay: 18}),
+    Moon.create({date: '2018-11-25', moonPhase: 1, moonPhaseDay: 19}),
+    Moon.create({date: '2018-11-26', moonPhase: 1, moonPhaseDay: 20}),
+    Moon.create({date: '2018-11-27', moonPhase: 1, moonPhaseDay: 21}),
+    Moon.create({date: '2018-11-28', moonPhase: 1, moonPhaseDay: 22}),
+    Moon.create({date: '2018-11-29', moonPhase: 1, moonPhaseDay: 23}),
+    Moon.create({date: '2018-11-30', moonPhase: 1, moonPhaseDay: 24}),
+    Moon.create({date: '2018-12-01', moonPhase: 2, moonPhaseDay: 25}), 
+    Moon.create({date: '2018-12-02', moonPhase: 2, moonPhaseDay: 26}),
+    Moon.create({date: '2018-12-03', moonPhase: 2, moonPhaseDay: 27}),
+    Moon.create({date: '2018-12-04', moonPhase: 2, moonPhaseDay: 28}),
+    Moon.create({date: '2018-12-05', moonPhase: 2, moonPhaseDay: 29}), 
+    Moon.create({date: '2018-12-06', moonPhase: 2, moonPhaseDay: 30}),
+
+
+
+    Moon.create({date: '2018-12-07', moonPhase: 2, moonPhaseDay: 1}), 
+    Moon.create({date: '2018-12-08', moonPhase: 2, moonPhaseDay: 2}),
+    Moon.create({date: '2018-12-09', moonPhase: 2, moonPhaseDay: 3}),
+    Moon.create({date: '2018-12-10', moonPhase: 2, moonPhaseDay: 4}),
+    Moon.create({date: '2018-12-11', moonPhase: 2, moonPhaseDay: 5}),
+    Moon.create({date: '2018-12-12', moonPhase: 2, moonPhaseDay: 6}),
+    Moon.create({date: '2018-12-13', moonPhase: 2, moonPhaseDay: 7}),
+    Moon.create({date: '2018-12-14', moonPhase: 2, moonPhaseDay: 8}),
+    Moon.create({date: '2018-12-15', moonPhase: 2, moonPhaseDay: 9}),
+    Moon.create({date: '2018-12-16', moonPhase: 2, moonPhaseDay: 10}),
+    Moon.create({date: '2018-12-17', moonPhase: 2, moonPhaseDay: 12}),
+    Moon.create({date: '2018-12-18', moonPhase: 2, moonPhaseDay: 12}),
+    Moon.create({date: '2018-12-19', moonPhase: 2, moonPhaseDay: 13}),
+    Moon.create({date: '2018-12-20', moonPhase: 2, moonPhaseDay: 14}),
+    Moon.create({date: '2018-12-21', moonPhase: 2, moonPhaseDay: 15}),
+    Moon.create({date: '2018-12-22', moonPhase: 2, moonPhaseDay: 16}),
+    Moon.create({date: '2018-12-23', moonPhase: 2, moonPhaseDay: 17}),
+    Moon.create({date: '2018-12-24', moonPhase: 2, moonPhaseDay: 18}),
+    Moon.create({date: '2018-12-25', moonPhase: 2, moonPhaseDay: 19}),
+    Moon.create({date: '2018-12-26', moonPhase: 2, moonPhaseDay: 20}),
+    Moon.create({date: '2018-12-27', moonPhase: 2, moonPhaseDay: 21}),
+    Moon.create({date: '2018-12-28', moonPhase: 2, moonPhaseDay: 22}),
+    Moon.create({date: '2018-12-29', moonPhase: 2, moonPhaseDay: 23}),
+    Moon.create({date: '2018-12-30', moonPhase: 2, moonPhaseDay: 24}),
+    Moon.create({date: '2018-12-31', moonPhase: 2, moonPhaseDay: 25}),
+    Moon.create({date: '2019-01-01', moonPhase: 2, moonPhaseDay: 26}), 
+    Moon.create({date: '2019-01-02', moonPhase: 2, moonPhaseDay: 27}),
+    Moon.create({date: '2019-01-03', moonPhase: 2, moonPhaseDay: 28}), 
+    Moon.create({date: '2019-01-04', moonPhase: 2, moonPhaseDay: 29}), 
+
+    Moon.create({date: '2019-01-05', moonPhase: 3, moonPhaseDay: 1}), 
+    Moon.create({date: '2019-01-06', moonPhase: 3, moonPhaseDay: 2}),
+    Moon.create({date: '2019-01-07', moonPhase: 3, moonPhaseDay: 3}), 
+    Moon.create({date: '2019-01-08', moonPhase: 3, moonPhaseDay: 4}),
+    Moon.create({date: '2019-01-09', moonPhase: 3, moonPhaseDay: 5}),
+    Moon.create({date: '2019-01-10', moonPhase: 3, moonPhaseDay: 6}),
+    Moon.create({date: '2019-01-11', moonPhase: 3, moonPhaseDay: 7}),
+    Moon.create({date: '2019-01-12', moonPhase: 3, moonPhaseDay: 8}),
+    Moon.create({date: '2019-01-13', moonPhase: 3, moonPhaseDay: 9}),
+    Moon.create({date: '2019-01-14', moonPhase: 3, moonPhaseDay: 10}),
+    Moon.create({date: '2019-01-15', moonPhase: 3, moonPhaseDay: 11}),
+    Moon.create({date: '2019-01-16', moonPhase: 3, moonPhaseDay: 12}),
+    Moon.create({date: '2019-01-17', moonPhase: 3, moonPhaseDay: 13}),
+    Moon.create({date: '2019-01-18', moonPhase: 3, moonPhaseDay: 14}),
+    Moon.create({date: '2019-01-19', moonPhase: 3, moonPhaseDay: 15}),
+    Moon.create({date: '2019-01-20', moonPhase: 3, moonPhaseDay: 16}),
+    Moon.create({date: '2019-01-21', moonPhase: 3, moonPhaseDay: 17}),
+    Moon.create({date: '2019-01-22', moonPhase: 3, moonPhaseDay: 18}),
+    Moon.create({date: '2019-01-23', moonPhase: 3, moonPhaseDay: 19}),
+    Moon.create({date: '2019-01-24', moonPhase: 3, moonPhaseDay: 20}),
+    Moon.create({date: '2019-01-25', moonPhase: 3, moonPhaseDay: 21}),
+    Moon.create({date: '2019-01-26', moonPhase: 3, moonPhaseDay: 22}),
+    Moon.create({date: '2019-01-27', moonPhase: 3, moonPhaseDay: 23})
+  ])
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${appreciates.length} appreciates`)
   console.log(`seeded ${mourns.length} mourns `)
   console.log(`seeded ${intentions.length} intentions`)
+  console.log(`seeded ${moons.length} moons`)
   console.log(`seeded successfully`)
 }
 

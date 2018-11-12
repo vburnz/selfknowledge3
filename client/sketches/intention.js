@@ -1,10 +1,11 @@
 export default function sketch (p) { 
 
 
-    var angle = 0;
+    //var angle = 0;
     // var slider;
     var height = 400; 
     var width = 400; 
+    let angle = p.TWO_PI;  
 
     p.setup = function() {
         p.createCanvas(height, width);
@@ -12,11 +13,14 @@ export default function sketch (p) {
     }
 
     p.draw = function() {
-        p.background(51);
-        angle = p.PI/3; 
+        p.background(255, 105, 180);
         p.stroke(255);
         p.translate(200, height);
         p.branch(100);
+        if(angle > p.PI/4){ 
+            angle -=p.PI/16; 
+        }
+        
     }
     
     p.branch = function(len){

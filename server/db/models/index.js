@@ -2,6 +2,7 @@ const User = require('./user')
 const Appreciate = require('./appreciate')
 const Mourn = require('./mourn')
 const Intention = require('./intention')
+const Moon = require('./moon')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -20,5 +21,6 @@ module.exports = {
   User, 
   Appreciate, 
   Mourn, 
-  Intention
+  Intention, 
+  Moon
 }

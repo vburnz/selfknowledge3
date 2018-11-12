@@ -10,7 +10,7 @@ export default function sketch (p){
         p.createCanvas(height, width);
         p.angleMode(p.DEGREES);
         p.colorMode(p.HSB);
-        p.background(0);
+        p.background(0); 
     }
     
     p.draw = function (){
