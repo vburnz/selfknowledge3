@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Appreciate, Mourn, Intention, Moon} = require('../server/db/models')
+const {User, Appreciate, Mourn, Intention, Moon, Cycle} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,19 +12,26 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  const cycleOne = await Cycle.create({startDate:'2018-11-07', endDate:'2018-12-06'})
+  const cycleTwo = await Cycle.create({startDate:"2018-12-07", endDate:"2019-01-04"})
+
+
   const appreciates = await Promise.all([
-    Appreciate.create({target:'this warm blanket', notes: 'its really warm and cozy, espeically with this heater, which i just remembered to check and yep it went off again', tags:['home', 'cozy', 'lil perceptual surprises']}),
-    Appreciate.create({target: 'wilder than me', notes: 'i love this song, espeically when she walks in with that sweet corona', tags: ['sweet', 'corona']})
+    Appreciate.create({cycleId: cycleOne.id, target:'this warm blanket', notes: 'its really warm and cozy, espeically with this heater, which i just remembered to check and yep it went off again', tags:['home', 'cozy', 'lil perceptual surprises']}),
+    Appreciate.create({cycleId: cycleOne.id, target: 'wilder than me', notes: 'i love this song, espeically when she walks in with that sweet corona', tags: ['sweet', 'corona']}), 
+    Appreciate.create({cycleId: cycleTwo.id, target: 'my cats', notes: 'dear frida and meme, thank you for reminding me daily that "Alive" is actually an okay state', tags:['cats', 'cat cult nation', 'cat cult milennium', 'depression cures']})
   ])
 
   const mourns = await Promise.all([ 
-    Mourn.create({target:'my free and youthful passion and excitement', notes: 'once upon a time, i was just so perky and bright eyed and bushy tailed and naive but excitable as all heck', tags: ['yesteryear', 'youth', 'maidenhood', 'aged wisdom', 'getting older means getting more weary', 'time is a flat fucking circle']}), 
-    Mourn.create({target: 'Pat Mullen // Tish Burnham', notes: 'the strong irish broad still holds on to the last moments of existence, but her youth and her full cognition are behind her. godbless all her strength, stamina, and sweetness', tags:['family', 'death', 'aging', 'irish']})
+    Mourn.create({cycleId: cycleOne.id, target:'my free and youthful passion and excitement', notes: 'once upon a time, i was just so perky and bright eyed and bushy tailed and naive but excitable as all heck', tags: ['yesteryear', 'youth', 'maidenhood', 'aged wisdom', 'getting older means getting more weary', 'time is a flat fucking circle']}), 
+    Mourn.create({cycleId: cycleOne.id, target: 'Pat Mullen // Tish Burnham', notes: 'the strong irish broad still holds on to the last moments of existence, but her youth and her full cognition are behind her. godbless all her strength, stamina, and sweetness', tags:['family', 'death', 'aging', 'irish']}), 
+    Mourn.create({cycleId: cycleTwo.id, target: 'the days when i could consume media without seeing and being personally demoralized by its problematic aspects', notes: 'knowledge is power but also it can sometimes lead to you feeling more disempowered', tags:['youth', 'education', 'aged wisdom']})
   ])
 
   const intentions = await Promise.all([
-    Intention.create({target:'to finish this stackathon project', notes:'there has been a number of failures and dead ends and existential decision making crises but i am holding strong', tags: ['who am i', 'existential', 'individual projects']}), 
-    Intention.create({target: 'to engage in self-encouragement instead of self-loathing', notes: 'if meaning is constructed and your conscious experience of life is determined by your perceptual narrative, than you must write your self a winning story in order for such to come true', tags: ['perception', 'constructed identity', 'constructed reality', 'narrative']})
+    Intention.create({cycleId: cycleOne.id, target: 'to finish this stackathon project', notes:'there has been a number of failures and dead ends and existential decision making crises but i am holding strong', tags: ['who am i', 'existential', 'individual projects']}), 
+    Intention.create({cycleId: cycleOne.id, target: 'to engage in self-encouragement instead of self-loathing', notes: 'if meaning is constructed and your conscious experience of life is determined by your perceptual narrative, than you must write your self a winning story in order for such to come true', tags: ['perception', 'constructed identity', 'constructed reality', 'narrative']}), 
+    Intention.create({cycleId: cycleTwo.id, target: 'to get some sleep tonight!', notes: 'I think I can reach a finishing place in the next hour or so!!', tags: ['time', 'sleep', 'self-care']})
   ])
 
   const moons = await Promise.all([

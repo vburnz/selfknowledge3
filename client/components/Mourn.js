@@ -14,12 +14,14 @@ class Mourn extends Component {
             target: '', 
             notes: '', 
             tags: [], 
-            tagInput: ''
+            tagInput: '', 
+            cycleId: null
         }
         this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
-        this.props.getMourn(); 
+        this.setState({cycleId: this.props.cycleNum})
+        this.props.getMourn(this.props.cycleNum); 
         // console.log('mourn props', this.props.mourn)
         // this.setState({mournsThisCycle: this.props.mourn.length}); 
 
@@ -87,11 +89,12 @@ class Mourn extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    mourn: state.mourn.mourn
+    mourn: state.mourn.mourn, 
+    cycleNum: state.cycle.cycleNum
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getMourn: () => dispatch(getMourn()), 
+    getMourn: (cycleNum) => dispatch(getMourn(cycleNum)), 
     addMourn: (mourn) => dispatch(addMourn(mourn))
 })
 

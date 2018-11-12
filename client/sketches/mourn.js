@@ -6,6 +6,7 @@ export default function sketch (p){
   var height = 300; 
   let mourn = false; 
   let mournscale = 0; 
+  let clear = false; 
 
   p.setup = function(){ 
     p.createCanvas(width, height); 
@@ -80,13 +81,27 @@ export default function sketch (p){
     var x, y; 
     let num = img.width/2;  
 
-
+    // if (!clear){ 
+    //   for (y = img.height/2; y < img.height; y++){ 
+    //     num-=1; 
+    //     for (x = num; x<img.width-num; x++){ 
+    //       // if (p.random() > 0.8){ 
+    //         var red = 100;
+    //         var green = 100; 
+    //         var blue = 255; 
+    //         var alpha = 255; 
+    //         writeColor(img, x, y, red, green, blue, alpha)
+    //       // }
+    //     }
+    //   }
+    //   clear = true; 
+    // }
     if (mourn){ 
       for (y = img.height/2; y < img.height; y++){ 
          
         if (y > img.height-mournscale){ 
           num-=0.5;
-        }
+        
           for (x = num; x<img.width-num; x++){ 
             if (p.random() > 0.8){ 
               var red = p.random(255);  
@@ -96,19 +111,19 @@ export default function sketch (p){
               writeColor(img, x, y, red ,green, blue, alpha)
             }
           }
-        
-      }
-    } else { 
-      for (y = img.height/2; y < img.height; y++){ 
-        num-=1; 
-        for (x = num; x<img.width-num; x++){ 
-          // if (p.random() > 0.8){ 
-            var red = 100;
-            var green = 100; 
-            var blue = 255; 
-            var alpha = 255; 
-            writeColor(img, x, y, red, green, blue, alpha)
-          // }
+        } else { 
+      // for (y = img.height/2; y < img.height; y++){ 
+          num-=1; 
+          for (x = num; x<img.width-num; x++){ 
+            // if (p.random() > 0.8){ 
+              var red = 100;
+              var green = 100; 
+              var blue = 255; 
+              var alpha = 255; 
+              writeColor(img, x, y, red, green, blue, alpha)
+            // }
+          }
+      // }
         }
       }
     }
@@ -121,65 +136,8 @@ export default function sketch (p){
         cooling(img); 
       }
     }
-    
-    // let num = img.width/2; //4
+  
 
-    // let num = img.width/2;  
-
-    // //should make this one big 
-    // //with ifs inside the y --> directs to diff x loops 
-
-    // for (y = img.height/2; y < img.height; y++){
-    //   if (y < 4*img.height/5){ 
-    //     for (x = num; x<img.width-num; x++){ 
-    //       if (p.random() > 0.8){ 
-    //         var red = p.random(255)  
-    //         var green = 200
-    //         var blue = 200; 
-    //         var alpha = 255; 
-    //         writeColor(img, x, y, red, green, blue, alpha)
-    //       }
-    //     }
-    //     num-=1.1;
-    //   } else { 
-    //     for (x = (num*1.2); x<img.width-(num*1.2); x++){ 
-    //       if (p.random() > 0.8){ 
-    //         var red = p.random(255)  
-    //         var green = 200
-    //         var blue = 200; 
-    //         var alpha = 255; 
-    //         writeColor(img, x, y, red, green, blue, alpha)
-    //       }
-    //     }
-    //   }
-       
-    // }
-
-    // for (y = (3*img.height/4); y < img.height-10; y++){
-      
-
-    // }
-    
-    // for (y = img.height/2+35+5; y < img.height; y++){
-    //   num+=1
-    //   for (x = num; x<img.width-num; x++){ 
-    //     if (p.random() > 0.8){ 
-    //       var red = p.random(255)  
-    //       var green = 200
-    //       var blue = 200; 
-    //       var alpha = 255; 
-    //       writeColor(img, x, y, red, green, blue, alpha)
-    //     }
-    //   }
-
-    // }
-
-    for (y = img.height/2; y < img.height; y++){ 
-      for (x = 0; x<img.width; x++){ 
-        heating(img); 
-        cooling(img); 
-      }
-    }
 
     img.updatePixels(); 
     p.image(img, 0, 0); 

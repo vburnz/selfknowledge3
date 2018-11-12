@@ -13,12 +13,15 @@ class Intention extends Component {
             target: '', 
             notes: '', 
             tags: [], 
-            tagInput: ''
+            tagInput: '', 
+            cycleId: null
         }
         this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
-        this.props.getIntention(); 
+        console.log('this.props', this.props)
+        this.setState({cycleId: this.props.cycleNum})
+        this.props.getIntention(this.props.cycleNum); 
 
     }
     handleSubmit(event){ 
@@ -75,12 +78,13 @@ class Intention extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    intention: state.intention.intention
+    intention: state.intention.intention, 
+    cycleNum: state.cycle.cycleNum
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getIntention: () => dispatch(getIntention()), 
-    addIntention: (intention) => dispatch(addIntention(intention))
+    getIntention: (cycleNum) => dispatch(getIntention(cycleNum)), 
+    addIntention: (intention) => dispatch(addIntention(intention)), 
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Intention)); 

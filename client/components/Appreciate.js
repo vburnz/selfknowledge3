@@ -13,12 +13,16 @@ class Appreciate extends Component {
             target: '', 
             notes: '', 
             tags: [], 
-            tagInput: ''
+            tagInput: '', 
+            cycleId: null
         }
         this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
-        this.props.getAppreciate(); 
+        this.setState({cycleId: this.props.cycleNum})
+        this.props.getAppreciate(this.props.cycleNum); 
+        console.log('cycleNum', this.props.cycleNum); 
+        
 
     }
     handleSubmit(event){ 
@@ -82,11 +86,12 @@ class Appreciate extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    appreciate: state.appreciate.appreciate
+    appreciate: state.appreciate.appreciate, 
+    cycleNum: state.cycle.cycleNum
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getAppreciate: () => dispatch(getAppreciate()),
+    getAppreciate: (cycleNum) => dispatch(getAppreciate(cycleNum)),
     addAppreciate: (appreciate) => dispatch(addAppreciate(appreciate))
 })
 

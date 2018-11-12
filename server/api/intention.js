@@ -10,6 +10,18 @@ router.get('/', async(req, res, next) => {
         .catch(next)
 })
 
+router.get('/:cycleNum', async(req, res, next) => { 
+    Intention.findAll({ 
+        where: { 
+            cycleId: req.params.cycleNum
+        }
+    })
+        .then(intention => {
+            res.status(200).json(intention)
+        })
+        .catch(next)
+})
+
 router.post('/', async(req, res, next) => { 
     Intention.create(req.body)
         .then(intention => { 

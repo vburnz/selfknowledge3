@@ -22,10 +22,9 @@ const addedAppreciate = appreciate => ({type: ADDED_APPRECIATE, appreciate})
 /**
  * THUNK CREATORS
  */
-export const getAppreciate = () => async dispatch => { 
+export const getAppreciate = (cycleNum) => async dispatch => { 
     try { 
-        const res = await axios.get('/api/appreciate')
-        console.log('res.data', res); 
+        const res = await axios.get(`/api/appreciate/${cycleNum}`)
         dispatch(gotAppreciate(res.data || initialState.appreciate))
     } 
     catch (err) { 
@@ -35,6 +34,7 @@ export const getAppreciate = () => async dispatch => {
 
 export const addAppreciate = (appreciate) => async dispatch => { 
     try {
+        console.log('data', appreciate)
         const res = await axios.post('/api/appreciate', appreciate)
         dispatch(addedAppreciate(res.data))
     } catch (error) {  

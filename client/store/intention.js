@@ -22,9 +22,10 @@ const addeddIntention = intention => ({type: ADDED_INTENTION, intention})
 /**
  * THUNK CREATORS
  */
-export const getIntention = () => async dispatch => { 
+export const getIntention = (cycleNum) => async dispatch => { 
     try { 
-        const res = await axios.get('/api/intention') 
+        console.log('cycle num', cycleNum); 
+        const res = await axios.get(`/api/intention/${cycleNum}`) 
         dispatch(gotIntention(res.data || initialState.intention))
     } 
     catch (error) { 

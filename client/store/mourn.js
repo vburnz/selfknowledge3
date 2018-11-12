@@ -22,9 +22,10 @@ const addedMourn = mourn => ({type: ADDED_MOURN, mourn})
 /**
  * THUNK CREATORS
  */
-export const getMourn = () => async dispatch => { 
+export const getMourn = (cycleNum) => async dispatch => { 
     try { 
-        const res = await axios.get('/api/mourn')
+        console.log('reached thunk', cycleNum)
+        const res = await axios.get(`/api/mourn/${cycleNum}`)
         console.log('res.data', res); 
         dispatch(gotMourn(res.data || initialState.mourn))
     } 
