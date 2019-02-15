@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import P5Wrapper from 'react-p5-wrapper'
+// import P5Wrapper from 'react-p5-wrapper'
+import P5Wrapper from './P5Wrapper'
 import {getMourn, addMourn} from '../store'
 import reflection from '../sketches/reflection'
 

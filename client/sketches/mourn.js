@@ -7,10 +7,11 @@ export default function sketch (p){
   let mourn = false; 
   let mournscale = 0; 
   let clear = false; 
+  
 
   p.setup = function(){ 
     p.createCanvas(width, height); 
-    p.background(255, 105, 180); 
+    p.background(255, 214, 235); 
   }
   
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {

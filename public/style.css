@@ -1,7 +1,7 @@
 body {
-  font-family: sans-serif;
-  background-color: rgb(255, 105, 180); 
-  color: rgb(235, 216, 216); 
+  font-family: 'Futura';
+  background-color: rgb(255, 214, 235); 
+  color: rgb(0, 68, 61); 
 }
 
 a {
@@ -12,9 +12,11 @@ label {
   display: block;
 }
 
+
 nav a {
   display: inline-block;
   margin: 1em;
+  text-decoration: none; 
 }
 
 form div {
@@ -31,6 +33,175 @@ form div {
   flex-direction: column; 
   flex-flow: center; 
 }
-/* .sketch { 
-  align-self: center; 
-} */
+.sketch-container { 
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+button { 
+  font-family: 'Futura';
+  color: rgb(255, 214, 235); 
+  background-color: rgb(0, 68, 61); 
+  font-size: 16px; 
+}
+
+button:hover{ 
+  font-family: 'Futura';
+  background-color: rgb(255, 214, 235); 
+  color: rgb(0, 68, 61); 
+  font-size: 16px; 
+}
+
+.option-bar{ 
+  padding-right: 50px; 
+}
+
+.moon-words { 
+  width: 40%; 
+}
+
+.home-page{ 
+  display: flex; 
+  flex-direction: row; 
+}
+
+#defaultCanvas0 { 
+  padding: 50px; 
+}
+.counter-text{ 
+  font-size: 22px; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+  border: 5px; 
+  border-style: groove; 
+  border-color: rgb(0, 68, 61); 
+  padding: 20px; 
+  margin-bottom: 50px; 
+
+}
+
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+.filled-notice {
+color: hsla(0, 0%, 0%, .9);
+font: normal 60px Varela Round, sans-serif;
+height: 100px;
+left: 0;
+letter-spacing: 5px;
+margin: -80px 0 0 0;
+position: absolute;
+text-align: center;
+text-transform: uppercase;
+top: 50%;
+width: 100%;
+animation: move linear 2000ms infinite;  
+padding-top: 30px; 
+}
+
+@keyframes move {
+0% {
+text-shadow:
+  4px -4px 0 hsla(0, 100%, 50%, 1), 
+  3px -3px 0 hsla(0, 100%, 50%, 1), 
+  2px -2px 0 hsla(0, 100%, 50%, 1), 
+  1px -1px 0 hsla(0, 100%, 50%, 1),
+  -4px 4px 0 hsla(180, 100%, 50%, 1), 
+  -3px 3px 0 hsla(180, 100%, 50%, 1), 
+  -2px 2px 0 hsla(180, 100%, 50%, 1), 
+  -1px 1px 0 hsla(180, 100%, 50%, 1)
+;
+}
+25% {    
+text-shadow:      
+  -4px -4px 0 hsla(180, 100%, 50%, 1), 
+  -3px -3px 0 hsla(180, 100%, 50%, 1), 
+  -2px -2px 0 hsla(180, 100%, 50%, 1), 
+  -1px -1px 0 hsla(180, 100%, 50%, 1),
+  4px 4px 0 hsla(0, 100%, 50%, 1), 
+  3px 3px 0 hsla(0, 100%, 50%, 1), 
+  2px 2px 0 hsla(0, 100%, 50%, 1), 
+  1px 1px 0 hsla(0, 100%, 50%, 1)      
+;
+}
+50% {
+text-shadow:
+  -4px 4px 0 hsla(0, 100%, 50%, 1), 
+  -3px 3px 0 hsla(0, 100%, 50%, 1), 
+  -2px 2px 0 hsla(0, 100%, 50%, 1), 
+  -1px 1px 0 hsla(0, 100%, 50%, 1),
+  4px -4px 0 hsla(180, 100%, 50%, 1), 
+  3px -3px 0 hsla(180, 100%, 50%, 1), 
+  2px -2px 0 hsla(180, 100%, 50%, 1), 
+  1px -1px 0 hsla(180, 100%, 50%, 1)
+;
+}
+75% {
+text-shadow:
+  4px 4px 0 hsla(180, 100%, 50%, 1), 
+  3px 3px 0 hsla(180, 100%, 50%, 1), 
+  2px 2px 0 hsla(180, 100%, 50%, 1), 
+  1px 1px 0 hsla(180, 100%, 50%, 1),
+  -4px -4px 0 hsla(0, 100%, 50%, 1), 
+  -3px -3px 0 hsla(0, 100%, 50%, 1), 
+  -2px -2px 0 hsla(0, 100%, 50%, 1), 
+  -1px -1px 0 hsla(0, 100%, 50%, 1)      
+;
+}
+100% {
+text-shadow:
+  4px -4px 0 hsla(0, 100%, 50%, 1), 
+  3px -3px 0 hsla(0, 100%, 50%, 1), 
+  2px -2px 0 hsla(0, 100%, 50%, 1), 
+  1px -1px 0 hsla(0, 100%, 50%, 1),
+  -4px 4px 0 hsla(180, 100%, 50%, 1), 
+  -3px 3px 0 hsla(180, 100%, 50%, 1), 
+  -2px 2px 0 hsla(180, 100%, 50%, 1), 
+  -1px 1px 0 hsla(180, 100%, 50%, 1)
+;
+}  
+}
+
+input{ 
+  width: 100%; 
+}
+
+input[type=text] {
+  font-family: 'Futura';
+  font-size: 16px; 
+  color: rgb(255, 214, 235); 
+  background-color: rgb(0, 68, 61); 
+}
+.input-container { 
+  text-align: center; 
+  width: 600px; 
+}
+table{ 
+  border-spacing: 40px; 
+  margin-left: 50px; 
+  margin-right: 50px; 
+  border-collapse: collapse;
+  
+  /* border-style: groove; 
+  border:  5px;  */
+  
+}
+th {
+  letter-spacing: 2px;
+  border-bottom: 1px solid black; 
+}
+
+td {
+  letter-spacing: 1px;
+  font-size: 16px; 
+  border-bottom: 1px dashed black; 
+}
+
+tbody td {
+  padding-left: 50px; 
+  padding-right: 80px; 
+  padding-top: 30px; 
+  padding-bottom: 30px; 
+  text-align: justify;
+}

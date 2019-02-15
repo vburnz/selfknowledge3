@@ -7,6 +7,7 @@ export default function sketch (p) {
     var width = 400; 
     let angle = p.TWO_PI;  
     let finalAngle = p.TWO_PI; 
+    let finished = false; 
 
     p.setup = function() {
         p.createCanvas(height, width);
@@ -34,14 +35,18 @@ export default function sketch (p) {
         };
 
     p.draw = function() {
-        p.background(255, 105, 180);
-        p.stroke(255);
+        if (finished) p.noLoop(); 
+        
+        p.background(255, 214, 235);
+        p.stroke(0, 68, 61);
         p.translate(200, height);
         p.branch(100);
         if(angle > finalAngle){ 
             angle -=p.PI/16; 
         }
-        
+        else if (finalAngle != p.TWO_PI){
+            finished = true; 
+        }         
     }
     
     p.branch = function(len){

@@ -7,9 +7,11 @@ const Appreciate = db.define('appreciate', {
         defaultValue: Sequelize.NOW
     }, 
     target: { 
-        type: Sequelize.STRING
+        type: Sequelize.STRING, 
+        allowNull: false
     }, notes: { 
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT, 
+        allowNull: false
     }, 
     tags : { 
         type: Sequelize.ARRAY(Sequelize.STRING)

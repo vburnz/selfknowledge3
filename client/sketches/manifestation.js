@@ -151,7 +151,7 @@ export default function sketch (p) {
     }
     
     p.draw = function(){
-        p.background(51);
+        p.background(255, 105, 180);
         tree.show();
         tree.grow();
     

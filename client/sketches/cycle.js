@@ -194,7 +194,7 @@ export default function sketch (p){
         p.translate(canvasHeight, canvasWidth)
         p.rotate(p.PI); 
         if (!showed) { 
-            p.background(255, 105, 180); 
+            p.background(255, 214, 235); 
             // rotate(PI); 
             cycle.show();
             moons.show(); 
