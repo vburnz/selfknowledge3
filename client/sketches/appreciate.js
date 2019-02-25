@@ -5,14 +5,13 @@ export default function sketch (p){
     var width = 400; 
     let end = 0; 
     
-    
-
+  
     p.setup = function (){
     
         p.createCanvas(height, width);
         p.angleMode(p.DEGREES);
         p.colorMode(p.HSB);
-        p.background(330, 59, 100); 
+        p.background(329, 16.1, 100); 
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
@@ -45,6 +44,8 @@ export default function sketch (p){
             //can change size of circles -- larger to middle smaller ouside or soemthigng
             p.ellipse(x, y, 4, 4);
             n++;
+        } else if (end !== 0) {
+            p.noLoop(); 
         }
     
         
