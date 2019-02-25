@@ -9,5 +9,5 @@ const Cycle = db.define('cycle', {
         type: Sequelize.DATEONLY
     }
 })
-
+ 
 module.exports = Cycle
