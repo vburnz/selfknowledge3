@@ -11,12 +11,13 @@ export default function sketch (p) {
 
     p.setup = function() {
         p.createCanvas(height, width);
+        console.log('setup!')
         // slider = createSlider(0, p.TWO_PI, p.PI/4, 0.01);
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
         console.log('props', props); 
-       
+          finished = false; 
           if (props.intentions >=5) { 
             finalAngle = p.PI/4; 
           } else if (props.intentions === 4){ 
@@ -35,7 +36,7 @@ export default function sketch (p) {
         };
 
     p.draw = function() {
-        if (finished) p.noLoop(); 
+        // if (finished) p.noLoop(); 
         
         p.background(255, 214, 235);
         p.stroke(0, 68, 61);

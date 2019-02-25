@@ -27,7 +27,7 @@ class Intention extends Component {
 
     }
     handleSubmit(event){ 
-        // event.preventDefault(); 
+        event.preventDefault(); 
         if (this.state.target!=='' && this.state.notes !==''){
             this.props.addIntention(this.state); 
             this.setState({
