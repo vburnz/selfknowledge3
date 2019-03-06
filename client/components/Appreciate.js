@@ -20,9 +20,7 @@ class Appreciate extends Component {
         this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
-        this.setState({cycleId: this.props.cycleNum})
-        this.props.getAppreciate(this.props.cycleNum); 
-        console.log('cycleNum', this.props.cycleNum); 
+        this.props.getAppreciate(new Date() - (28 - this.props.newMoon)); 
         
 
     }
@@ -95,7 +93,8 @@ class Appreciate extends Component {
 
 const mapStateToProps = state => ({ 
     appreciate: state.appreciate.appreciate, 
-    cycleNum: state.cycle.cycleNum
+    // cycleNum: state.cycle.cycleNum, 
+    newMoon: state.cycle.newMoon
 })
 
 const mapDispatchToProps = dispatch => ({ 

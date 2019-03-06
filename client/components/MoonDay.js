@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 // import P5Wrapper from 'react-p5-wrapper'
+import NewMoon from './NewMoon'
+import FullMoon from './FullMoon'
 import P5Wrapper from './P5Wrapper'
 import sketch from '../sketches/cycle'
 import {setCycleNum} from '../store'
@@ -23,12 +25,15 @@ class MoonDay extends Component {
     render(){
         console.log(this.state); 
         return (
+            this.props.cycleDay ? 
             <div className="home-page">
-                <P5Wrapper sketch={sketch} day={this.props.cycleDay + 1}/>
+                
+                
          
                 {this.props.today ? 
                 (   <div>
                         <div>Today is a {this.props.today}!</div>
+                        {this.props.today === 'New Moon' ? <NewMoon /> : <FullMoon />}
                     </div>
                 )
                 : 
@@ -36,6 +41,7 @@ class MoonDay extends Component {
                 <div>
                     <p>There are {this.props.newMoon} days left until the next New Moon</p>
                     <p>There are {this.props.fullMoon} days left until the next Full Moon</p>
+                    <P5Wrapper sketch={sketch} day={this.props.cycleDay + 1}/>
                 </div>
                 )
                 }
@@ -48,6 +54,10 @@ class MoonDay extends Component {
 
 
             </div>
+
+            : 
+
+            <h1>LOADInG</h1>
 
         )
     }

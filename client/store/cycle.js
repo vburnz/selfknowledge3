@@ -36,7 +36,7 @@ export const setUpcomingMoons = (newMoon, fullMoon, today) => ({
 
 export const getMoonPhase = () => async dispatch => { 
     try {
-        const date = new Date(2019, 2, 21); 
+        const date = new Date(); 
         const day = date.getDate(); 
         const month = date.getMonth() + 1; 
         const year = date.getFullYear();  

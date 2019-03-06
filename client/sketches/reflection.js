@@ -16,7 +16,7 @@ export default function sketch (p) {
   p.draw = function () {
     // put drawing code here
     
-    p.background(255, 214, 235); 
+    p.background(0, 0, 0); 
 
     p.ortho(-400, 400, 400, -400, 0, 1000); 
 

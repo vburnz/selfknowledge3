@@ -15,6 +15,7 @@ export default function sketch (p){
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+      console.log(props); 
       if (props.appreciates === 1){ 
           end = 100; 
       } else if (props.appreciates === 2){ 
@@ -31,6 +32,7 @@ export default function sketch (p){
     }
     
     p.draw = function (){
+      console.log('end', end); 
         var a = n * 137.5;
         var r = c * p.sqrt(n);
     
@@ -45,7 +47,7 @@ export default function sketch (p){
             p.ellipse(x, y, 4, 4);
             n++;
         } else if (end !== 0) {
-            p.noLoop(); 
+            // p.noLoop(); 
         }
     
         
