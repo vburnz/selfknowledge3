@@ -13,7 +13,7 @@ const NewMoon = () => {
                 <h3>Today is a New Moon</h3>
                 <h4>New Moons are excellent times to reflect on what serves you and what does not...</h4>
                 <h5>As darkness descends, we too must see our energies coming to a resting place, clearing out the old to welcom in the new</h5>
-                <P5Wrapper sketch={reflection}/>
+                <P5Wrapper sketch={reflection}/> 
             </div>
         )
         

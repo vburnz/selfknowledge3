@@ -1,8 +1,5 @@
 const User = require('./user')
 const Feeling = require('./feeling')
-const Mourn = require('./mourn')
-const Intention = require('./intention')
-const Moon = require('./moon')
 const Cycle = require('./cycle')
 
 
@@ -29,8 +26,5 @@ User.hasMany(Feeling);
 module.exports = {
   User, 
   Feeling, 
-  Mourn, 
-  Intention, 
-  Moon, 
   Cycle
 }

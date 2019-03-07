@@ -10,7 +10,7 @@ import Table from './Table'
 import Modal from './Modal'
 import {Link} from 'react-router-dom'
 
-class Appreciate extends Component { 
+class Feeling extends Component { 
     constructor(){ 
         super(); 
         this.state = { 
@@ -81,4 +81,4 @@ const mapDispatchToProps = dispatch => ({
     addFeeling: (feeling, feelingType) => dispatch(addFeeling(feeling, feelingType))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Appreciate)); 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Feeling)); 

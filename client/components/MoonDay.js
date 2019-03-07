@@ -51,7 +51,7 @@ class MoonDay extends Component {
                             )
                         }
                         <div className="would-you">
-                        <p className>would you like to deposit a feeling?</p>
+                        <p>would you like to deposit a feeling?</p>
                         
                     <div className="feeling-buttons">
                         <Link to="/appreciate"><button type="button">Appreciate</button></Link>

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Appreciate, Mourn, Intention, Summary} from './components'
+import {Login, Signup, UserHome, Feeling, Summary} from './components'
 // import Appreciate from './components/Appreciate'
 import {me} from './store'
 
@@ -26,9 +26,9 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/appreciate" component={() => <Appreciate type='appreciate'/>}/>
-            <Route path="/mourn" component={() => <Appreciate type='mourn'/>}/>
-            <Route path="/intention" component={() => <Appreciate type='intention'/>}/>
+            <Route path="/appreciate" component={() => <Feeling type='appreciate'/>}/>
+            <Route path="/mourn" component={() => <Feeling type='mourn'/>}/>
+            <Route path="/intention" component={() => <Feeling type='intention'/>}/>
             <Route path="/summary" component={Summary}/>
           </Switch>
         )}
