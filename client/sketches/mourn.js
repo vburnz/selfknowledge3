@@ -15,37 +15,25 @@ export default function sketch (p){
   }
   
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    console.log('props', props); 
-      if (props.mourns > 0){
+    console.log('reached mourn', props); 
+      if (props.feelings > 0){
         mourn = true; 
       }
       //let mourns; 
-      if (props.mourns >=5) { 
+      if (props.feelings >=5) { 
         mournscale = 200;
-      } else if (props.mourns === 4){ 
+      } else if (props.feelings === 4){ 
         mournscale = 125; 
       }
-      else if (props.mourns === 3){ 
+      else if (props.feelings === 3){ 
         mournscale = 100; 
       }
-      else if (props.mourns === 2){ 
+      else if (props.feelings === 2){ 
         mournscale = 75; 
       }
-      else if (props.mourns === 1){ 
+      else if (props.feelings === 1){ 
         mournscale = 50; 
       }
-      // switch(mourns){ 
-      //   case 1: 
-      //     mournscale = 50
-      //   case 2: 
-      //     mournscale = 75
-      //   case 3: 
-      //     mournscale = 100
-      //   case 4: 
-      //     mournscale = 200
-      //   case 5: 
-      //     mournscale = 0; 
-      // }
     };
   p.draw = function (){  
     var img = p.createImage(width, height); 

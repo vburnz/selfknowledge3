@@ -3,24 +3,61 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const SET_CYCLE_NUM = 'SET_CYCLE_NUM'
+const SET_UPCOMING_MOONS = 'GET_UPCOMING_MOONS'
 
 /**
  * INITIAL STATE
  */
 
 const initialState = { 
-    cycleNum: 1
+    cycleDay: 0,
+    newMoon: 0,
+    fullMoon: 0,
+    today: null,
+
 }
 /**
  * ACTION CREATORS
  */
-export const setCycleNum = cycleNum =>({type: SET_CYCLE_NUM, cycleNum})
+
+
+export const setUpcomingMoons = (newMoon, fullMoon, today) => ({
+    type: SET_UPCOMING_MOONS, 
+    newMoon, 
+    fullMoon, 
+    today
+})
 
 
 /**
  * THUNK CREATORS
+ * 
  */
+
+export const getMoonPhase = () => async dispatch => { 
+    try {
+        const date = new Date(); 
+        const day = date.getDate(); 
+        const month = date.getMonth() + 1; 
+        const year = date.getFullYear();  
+        date.setHours(0, 0, 0, 0); 
+        const moonData = await axios.get(`https://api.usno.navy.mil/moon/phase?date=${month}/${day}/${year}&nump=4`); 
+        console.log(moonData); 
+        let newMoon; 
+        let fullMoon; 
+        let today = null; 
+        moonData.data.phasedata.forEach(datum => { 
+            if (datum.phase==='New Moon') newMoon = Math.floor((new Date(datum.date) - date)/86400000); 
+            if (datum.phase==='Full Moon') fullMoon = Math.floor((new Date(datum.date) - date)/86400000)
+        })
+        if (newMoon === 0) today = 'New Moon'
+        else if (fullMoon === 0) today = 'Full Moon'
+        dispatch(setUpcomingMoons(newMoon, fullMoon, today)); 
+    } catch (error) {
+        
+    }
+}
+
 // export const getAppreciate = () => async dispatch => { 
 //     try { 
 //         const res = await axios.get('/api/appreciate')
@@ -47,8 +84,10 @@ export const setCycleNum = cycleNum =>({type: SET_CYCLE_NUM, cycleNum})
 
 export default function (state = initialState, action) { 
     switch (action.type) { 
-        case SET_CYCLE_NUM: 
-            return {...state, cycleNum: action.cycleNum}
+        // case SET_CYCLE_NUM: 
+        //     return {...state, cycleNum: action.cycleNum}
+        case SET_UPCOMING_MOONS: 
+            return {...state, newMoon: action.newMoon, fullMoon: action.fullMoon, today: action.today, cycleDay: 28-action.newMoon}
         default: 
             return state; 
     }

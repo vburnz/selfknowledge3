@@ -1,35 +1,29 @@
 export default function sketch (p) { 
 
-
-    //var angle = 0;
-    // var slider;
-    var height = 400; 
-    var width = 400; 
+    let height = 400; 
+    let width = 400; 
     let angle = p.TWO_PI;  
     let finalAngle = p.TWO_PI; 
     let finished = false; 
 
     p.setup = function() {
         p.createCanvas(height, width);
-        console.log('setup!')
-        // slider = createSlider(0, p.TWO_PI, p.PI/4, 0.01);
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-        console.log('props', props); 
           finished = false; 
-          if (props.intentions >=5) { 
+          if (props.feelings >=5) { 
             finalAngle = p.PI/4; 
-          } else if (props.intentions === 4){ 
+          } else if (props.feelings === 4){ 
             finalAngle = p.PI/2
           }
-          else if (props.intentions === 3){ 
+          else if (props.feelings === 3){ 
             finalAngle = 5*p.PI/8 
           }
-          else if (props.intentions === 2){ 
+          else if (props.feelings === 2){ 
            finalAngle = 3*p.PI/4
           }
-          else if (props.intentions === 1){ 
+          else if (props.feelings === 1){ 
             finalAngle = 7*p.PI/8 
             
           }

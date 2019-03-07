@@ -1,66 +1,49 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-//import P5Wrapper from 'react-p5-wrapper'
-import P5Wrapper from './P5Wrapper'
-import {getAppreciate} from '../store'
-import sketch from '../sketches/appreciate'
+import {addFeeling} from '../store'
+
 
 class InputForm extends Component { 
-    constructor(props) { 
-        super(props); 
+    constructor(){ 
+        super(); 
         this.state = { 
-            date: '', 
             target: '', 
             notes: '', 
-            tags: ''
         }
+        this.handleSubmit= this.handleSubmit.bind(this); 
     }
-    componentDidMount(){ 
-        // this.props.getAppreciate(); 
-        //in map dispatch to props ---> ? I guess just map all of them?
-
+    handleSubmit(event){ 
+        console.log(this.props.feelingType); 
+        event.preventDefault(); 
+        this.props.addFeeling(this.state, this.props.feelingType); 
+        this.setState({
+            target: '', 
+            notes: '', 
+        })
+        this.props.handleClose(); 
     }
     render(){ 
         return (
-            this.props.appreciate ? 
-            (
-            <div className ="appreciate container">
-                <P5Wrapper sketch={sketch}/>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Date</th>
-                            <th>Target</th>
-                            <th>Notes</th>
-                            <th>Tags</th>
-                        </tr>
-                        {this.props.appreciate.map(appreciate => { 
-                        return (
-                            <tr key={appreciate.id}>
-                                <td>{appreciate.date}</td>
-                                <td>{appreciate.target}</td>
-                                <td>{appreciate.notes}</td>
-                                <td>{appreciate.tags.join(', ')}</td>
-                            </tr>
-                        )})}
-                    </tbody>
-                </table>
-            </div>
-            )
-            : 
-            (<div></div>)
-
+            <form className="input-container counter-text">
+                object of my {this.props.feelingType}
+                <br/>
+                <input type="text" value={this.state.target} onChange={event => this.setState({ target: event.target.value })}/>
+                <br />
+                notes on this {this.props.feelingType}
+                <br />
+                <input type="text" value={this.state.notes} onChange={event => this.setState({ notes: event.target.value })}/>
+                <br />
+                <button type="submit" onClick={this.handleSubmit}>Add</button>
+            </form>
+               
         )
+    
+
     }
 }
 
-const mapStateToProps = state => ({ 
-    appreciate: state.appreciate.appreciate
-})
-
 const mapDispatchToProps = dispatch => ({ 
-    getAppreciate: () => dispatch(getAppreciate())
+    addFeeling: (feeling, feelingType) => dispatch(addFeeling(feeling, feelingType))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Appreciate)); 
+export default connect(null, mapDispatchToProps)(InputForm); 

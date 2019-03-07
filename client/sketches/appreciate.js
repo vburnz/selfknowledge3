@@ -15,22 +15,22 @@ export default function sketch (p){
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      if (props.appreciates === 1){ 
+      if (props.feelings === 1){ 
           end = 100; 
-      } else if (props.appreciates === 2){ 
+      } else if (props.feelings === 2){ 
           end = 200; 
-      } else if (props.appreciates === 3){ 
+      } else if (props.feelings === 3){ 
         end = 400; 
-      } else if (props.appreciates === 4){ 
+      } else if (props.feelings === 4){ 
         end = 600; 
       }
-      else if (props.appreciates >= 5){ 
+      else if (props.feelings >= 5){ 
         end = 1300; 
       }
     
     }
     
-    p.draw = function (){
+    p.draw = function (){ 
         var a = n * 137.5;
         var r = c * p.sqrt(n);
     
@@ -45,7 +45,7 @@ export default function sketch (p){
             p.ellipse(x, y, 4, 4);
             n++;
         } else if (end !== 0) {
-            p.noLoop(); 
+            // p.noLoop(); 
         }
     
         
