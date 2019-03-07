@@ -13,8 +13,6 @@ export const UserHome = props => {
 
   return (
     <div className ="welcome container">
-      <h3>w e l c o m e </h3>
-      
       <MoonDay />
     </div>
   )

@@ -3,103 +3,82 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 // import P5Wrapper from 'react-p5-wrapper'
 import P5Wrapper from './P5Wrapper'
-import {getAppreciate, addAppreciate} from '../store'
-import sketch from '../sketches/appreciate'
+import {getFeeling} from '../store'
+import sketches from '../sketches'
+import InputForm from './InputForm'
+import Table from './Table'
+import Modal from './Modal'
+import {Link} from 'react-router-dom'
 
 class Appreciate extends Component { 
     constructor(){ 
         super(); 
         this.state = { 
-            // date: '', 
-            target: '', 
-            notes: '', 
-            tags: [], 
-            tagInput: '', 
-            cycleId: null
+            type: 'appreciate', 
+            showAdd: false, 
+            showTable: false, 
         }
-        this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
-        this.props.getAppreciate(new Date() - (28 - this.props.newMoon)); 
-        
+        this.props.getFeeling(new Date() - (28 - this.props.newMoon), this.props.type); 
+    }
 
+    showAddModal = () => {
+        this.setState({ showAdd: true });
     }
-    handleSubmit(event){ 
-        event.preventDefault(); 
-        // console.log(this.state.tagInput)
-        // let tags = []
-        // tags = this.state.tagInput.split(', '); 
-        // console.log('tagssss', tags); 
-        // this.setState({tags: tags})
-        // console.log(this.state); 
-        // this.props.addMourn({...this.state, tags}); 
-        this.props.addAppreciate(this.state); 
-        this.setState({
-            // date: '', 
-            target: '', 
-            notes: '', 
-            tags: []
-        })
+    
+    showTableModal = () => {
+        this.setState({ showTable: true });
     }
+    
+    hideAddModal = () => {
+        this.setState({ showAdd: false });
+    }
+
+    hideTableModal = () => { 
+        this.setState({ showTable: false });
+    }
+
     render(){ 
+        console.log('type', this.props.type); 
+        console.log(sketches); 
+        const feelings = this.props.feeling.filter(feeling => feeling.type == this.props.type) 
         return (
-            this.props.appreciate ? 
-            (
+            
             <div className ="appreciate container">
-                {(this.props.appreciate.length >= 5) ? (<div className="filled-notice">APPRECIATE FILLED</div>) : (null) }
-                <P5Wrapper className="sketch" sketch={sketch} appreciates={this.props.appreciate.length}/>
-                <div className="counter-text">{this.props.appreciate.length} / 5 appreciations this cycle</div>
-                <br /> 
-                <form className="input-container counter-text">
-                    {/* Date<input type="text" value={this.state.date} onChange={event => this.setState({ date: event.target.value })}/> */}
-                    Target
-                    <br/>
-                    <input type="text" value={this.state.target} onChange={event => this.setState({ target: event.target.value })}/>
-                    <br />
-                    Notes
-                    <br />
-                    <input type="text" value={this.state.notes} onChange={event => this.setState({ notes: event.target.value })}/>
-                    <br />
-                    {/* Tags<input type="text" value={this.state.tagInput} onChange={event => this.setState({ tagInput: event.target.value })}/> */}
-                    <button type="submit" onClick={this.handleSubmit}>Add Appreciation</button>
-                </form>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Date</th>
-                            <th>Target</th>
-                            <th>Notes</th>
-                            {/* <th>Tags</th> */}
-                        </tr>
-                        {this.props.appreciate.map(appreciate => { 
-                        return (
-                            <tr key={appreciate.id}>
-                                <td>{appreciate.date}</td>
-                                <td>{appreciate.target}</td>
-                                <td>{appreciate.notes}</td>
-                                {/* <td>{appreciate.tags.join(', ')}</td> */}
-                            </tr>
-                        )})}
-                    </tbody>
-                </table>
+                <Link to="/home">
+                    <button type='button'>
+                        HOME
+                    </button>
+                </Link>
+                {(feelings.length >= 5) ? (<div className="filled-notice">{this.props.type.toUpperCase()}FILLED</div>) : (null) }
+                <P5Wrapper className="sketch" sketch={sketches[this.props.type]} feelings={feelings.length}/>
+                <span className="button-span">
+                    <button type='button' onClick={this.showAddModal}>ADD</button>
+                    <button type='button' onClick={this.showTableModal}>VIEW</button>
+                </span>
+                <div className="counter-text">{feelings.length} / 5 {this.props.type}s this cycle</div>
+                <Modal show={this.state.showAdd} handleClose={this.hideAddModal} >
+                    <InputForm feelingType={this.props.type} handleClose={this.hideAddModal}/> 
+                </Modal>
+                <Modal show={this.state.showTable} handleClose={this.hideTableModal} >
+                    <Table feelings = {feelings} /> 
+                </Modal>
+                
             </div>
-            )
-            : 
-            (<div></div>)
 
         )
     }
 }
 
 const mapStateToProps = state => ({ 
-    appreciate: state.appreciate.appreciate, 
-    // cycleNum: state.cycle.cycleNum, 
+    feeling: state.feeling.feeling, 
     newMoon: state.cycle.newMoon
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getAppreciate: (cycleNum) => dispatch(getAppreciate(cycleNum)),
-    addAppreciate: (appreciate) => dispatch(addAppreciate(appreciate))
+    getFeeling: (startDate, feelingType) => dispatch(getFeeling(startDate, feelingType)),
+    addFeeling: (feeling, feelingType) => dispatch(addFeeling(feeling, feelingType))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Appreciate)); 

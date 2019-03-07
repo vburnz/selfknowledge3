@@ -26,9 +26,9 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/appreciate" component={Appreciate}/>
-            <Route path="/mourn" component={Mourn}/>
-            <Route path="/intention" component={Intention}/>
+            <Route path="/appreciate" component={() => <Appreciate type='appreciate'/>}/>
+            <Route path="/mourn" component={() => <Appreciate type='mourn'/>}/>
+            <Route path="/intention" component={() => <Appreciate type='intention'/>}/>
             <Route path="/summary" component={Summary}/>
           </Switch>
         )}

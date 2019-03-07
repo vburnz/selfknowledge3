@@ -3,9 +3,10 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 // import P5Wrapper from 'react-p5-wrapper'
 import P5Wrapper from './P5Wrapper'
-import {getMourn, addMourn} from '../store'
+import {getFeeling, addFeeling} from '../store'
 import sketch from '../sketches/mourn'
 
+const type = 'mourn'; 
 
 class Mourn extends Component { 
     constructor(){ 
@@ -16,13 +17,13 @@ class Mourn extends Component {
             notes: '', 
             tags: [], 
             tagInput: '', 
-            cycleId: null
         }
         this.handleSubmit= this.handleSubmit.bind(this); 
     }
     componentDidMount(){ 
-        this.setState({cycleId: this.props.cycleNum})
-        this.props.getMourn(this.props.cycleNum); 
+        this.props.getFeeling(new Date() - (28 - this.props.newMoon), 'mourn'); 
+        // this.setState({cycleId: this.props.cycleNum})
+        // this.props.getMourn(this.props.cycleNum); 
         // console.log('mourn props', this.props.mourn)
         // this.setState({mournsThisCycle: this.props.mourn.length}); 
 
@@ -38,7 +39,7 @@ class Mourn extends Component {
         // this.setState({tags: tags})
         // console.log(this.state); 
         // this.props.addMourn({...this.state, tags}); 
-        this.props.addMourn(this.state); 
+        this.props.addFeeling(this.state, 'mourn'); 
         this.setState({
             // date: '', 
             target: '', 
@@ -98,13 +99,13 @@ class Mourn extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    mourn: state.mourn.mourn, 
-    cycleNum: state.cycle.cycleNum
+    feeling: state.appreciate[type], 
+    newMoon: state.cycle.newMoon
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getMourn: (cycleNum) => dispatch(getMourn(cycleNum)), 
-    addMourn: (mourn) => dispatch(addMourn(mourn))
+    getFeeling: (startDate, feelingType) => dispatch(getFeeling(startDate, feelingType)),
+    addFeeling: (feeling, feelingType) => dispatch(addFeeling(feeling, feelingType))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Mourn)); 

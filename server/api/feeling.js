@@ -2,17 +2,18 @@ const router = require('express').Router()
 const {Feeling} = require('../db/models')
 module.exports = router
 
-router.get('/:feelingType', async(req, res, next) => { 
-    Feeling.findAll({ 
-        where : { 
-            type: req.params.feelingType
-        }
-    })
-        .then(feeling => {
-            res.status(200).json(feeling)
-        })
-        .catch(next)
-})
+// router.get('/:feelingType', async(req, res, next) => { 
+//     console.log('feeling type', req.params.feelingType)
+//     Feeling.findAll({ 
+//         where : { 
+//             type: req.params.feelingType
+//         }
+//     })
+//         .then(feeling => {
+//             res.status(200).json(feeling)
+//         })
+//         .catch(next)
+// })
 
 router.get('/:feelingType/cycle/:startDate', async(req, res, next) => { 
     const date = new Date(Number(req.params.startDate)).setHours(0, 0, 0, 0); 
@@ -21,7 +22,8 @@ router.get('/:feelingType/cycle/:startDate', async(req, res, next) => {
         where: { 
             createdAt: { 
                 $gt: date
-            }
+            }, 
+            type: req.params.feelingType
         }
     })
         .then(feeling => {

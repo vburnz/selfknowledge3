@@ -11,25 +11,14 @@ import {getMoonPhase} from '../store';
 
 
 class MoonDay extends Component { 
-    constructor(){ 
-        super(); 
-        this.state = { 
-
-        }
-    }
-
     componentDidMount(){ 
         this.props.getMoonPhase(); 
     }
 
     render(){
-        console.log(this.state); 
         return (
             this.props.cycleDay ? 
             <div className="home-page">
-                
-                
-         
                 {this.props.today ? 
                 (   <div>
                         <div>Today is a {this.props.today}!</div>
@@ -38,10 +27,17 @@ class MoonDay extends Component {
                 )
                 : 
                 (
-                <div>
-                    <p>There are {this.props.newMoon} days left until the next New Moon</p>
-                    <p>There are {this.props.fullMoon} days left until the next Full Moon</p>
-                    <P5Wrapper sketch={sketch} day={this.props.cycleDay + 1}/>
+                <div className = "moon-info">
+                    <div>
+                        <Link to="/appreciate"><button type="button">Appreciate</button></Link>
+                        <Link to="/mourn"><button type="button">Mourn</button></Link>
+                        <Link to="/intention"><button type="button">Intention</button></Link>
+                    </div>
+                    <div>
+                        <p>There are {this.props.newMoon} days left until the next New Moon</p>
+                        <p>There are {this.props.fullMoon} days left until the next Full Moon</p>
+                        <P5Wrapper sketch={sketch} day={this.props.cycleDay + 1}/>
+                    </div>
                 </div>
                 )
                 }
