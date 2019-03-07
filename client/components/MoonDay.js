@@ -17,7 +17,7 @@ class MoonDay extends Component {
 
     render(){
         return (
-            this.props.cycleDay ? 
+            (this.props.newMoon || this.props.fullMoon) ? 
             <div className="home-page">
                 {this.props.today ? 
                 (   <div>
@@ -27,16 +27,41 @@ class MoonDay extends Component {
                 )
                 : 
                 (
-                <div className = "moon-info">
+                <div>
                     <div>
+                        {this.props.newMoon < this.props.fullMoon ? 
+                            (
+                                <div>
+                                    <p className="shimmer">there are {this.props.newMoon} days left until the next New Moon</p>
+                                    <div className="moonscription">
+                                        <p>the absence of the moon's light reminds us of our return to darkness, to fresh soil, allowing some things to die so new things can be born</p>
+                                        <p>in the wind-down of the waning moon...</p>
+                                    </div>
+                                </div>
+                            )
+                            : 
+                            (
+                                <div>
+                                    <p className="shimmer">there are {this.props.fullMoon} days left until the next Full Moon</p>
+                                    <div className="moonscription">
+                                        <p>the fullness of the moon represents the abundance of self-manifestation and the illuminative light of seeing the self with clarity</p>
+                                        <p>in the lead-up of the waxing moon...</p>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        <div className="would-you">
+                        <p className>would you like to deposit a feeling?</p>
+                        
+                    <div className="feeling-buttons">
                         <Link to="/appreciate"><button type="button">Appreciate</button></Link>
                         <Link to="/mourn"><button type="button">Mourn</button></Link>
                         <Link to="/intention"><button type="button">Intention</button></Link>
                     </div>
-                    <div>
-                        <p>There are {this.props.newMoon} days left until the next New Moon</p>
-                        <p>There are {this.props.fullMoon} days left until the next Full Moon</p>
-                        <P5Wrapper sketch={sketch} day={this.props.cycleDay + 1}/>
+                    </div>
+                        <div>
+                        <P5Wrapper  sketch={sketch} day={this.props.cycleDay + 1}/>
+                        </div>
                     </div>
                 </div>
                 )

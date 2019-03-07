@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
-
 import MoonDay from './MoonDay'
+import Greeting from './Greeting'
 
 /**
  * COMPONENT
@@ -13,6 +12,7 @@ export const UserHome = props => {
 
   return (
     <div className ="welcome container">
+      <Greeting />
       <MoonDay />
     </div>
   )

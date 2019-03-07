@@ -31,7 +31,7 @@ form div {
 .container { 
   display: flex; 
   flex-direction: column; 
-  flex-flow: center; 
+  align-items: center; 
 }
 .sketch-container { 
   display: block;
@@ -167,6 +167,13 @@ input{
   width: 100%; 
 }
 
+p { 
+  text-align: center; 
+  font-family: 'Futura';
+  font-size: 16px; 
+  color: rgb(0, 68, 61); 
+}
+
 input[type=text] {
   font-family: 'Futura';
   font-size: 16px; 
@@ -239,7 +246,145 @@ tbody td {
   display: none;
 }
 
-.moon-info { 
+
+.shimmer {
+  /* font-family: "Lato"; */
+  font-weight: 300;
+  font-size: 1.5em;
+  /* margin: 0 auto; */
+  /* padding: 0 140px 0 0; */
+  /* display: inline; */
+  /* margin-bottom: 0; */
+  margin-top: 0px; 
+  color: white; 
+}
+
+
+.shimmer {
+  text-align: center;
+  color: rgba(255,255,255,0.1);
+  background: -webkit-gradient(linear, left top, right top, from(#003D44), to(#003D44), color-stop(0.5, #fff));
+  background: -moz-gradient(linear, left top, right top, from(#003D44), to(#003D44), color-stop(0.5, #fff));
+  background: gradient(linear, left top, right top, from(#003D44), to(#003D44), color-stop(0.5, #fff));
+  -webkit-background-size: 125px 100%;
+  -moz-background-size: 125px 100%;
+  background-size: 125px 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-animation-name: shimmer;
+  -moz-animation-name: shimmer;
+  animation-name: shimmer;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-color: #003D44;
+}
+@-moz-keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@-o-keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: top right;
+  }
+}
+
+.feeling-buttons { 
   display: flex; 
-  flex-direction: row; 
+  justify-content: center; 
+}
+
+.neon {
+  text-align: center; 
+  color: rgb(0, 160, 160);
+  text-shadow:
+    0 0 5px  rgb(0, 170, 170),
+    0 0 10px  rgb(0, 170, 170),
+    0 0 20px  rgb(0, 170, 170),
+    0 0 40px rgb(170, 103, 247)
+    0 0 80px rgb(170, 103, 247),
+    0 0 90px rgb(170, 103, 247),
+    0 0 100px rgb(170, 103, 247)
+    0 0 150px rgb(170, 103, 247);
+}
+
+.box { 
+  padding: 20px; 
+}
+
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.would-you{ 
+  border-style: outset; 
+  padding-bottom: 10px; 
+  background-color: #003D44; 
+  color: #FFD6EB;
+}
+
+.would-you p { 
+  color: #FFD6EB;
+}
+
+.moonscription { 
+  max-width: 500px; 
 }
