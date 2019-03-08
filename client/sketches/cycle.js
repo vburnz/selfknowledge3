@@ -161,8 +161,8 @@ export default function sketch (p){
             p.strokeWeight(14); 
             p.noFill(); 
             // p.rotate(p.PI)
-            if (cycleDay > 2) { 
-                let dayAngle = p.map(cycleDay, 1, 28, 0, p.TWO_PI); 
+            if (cycleDay >= 1) { 
+                let dayAngle = p.map(cycleDay, 0, 28, 0, p.TWO_PI); 
                 // p.arc(0, 0, 385, 385, -p.PI, -9*p.PI/8 + dayAngle);
                 p.arc(0, 0, 385, 385, 0, dayAngle);
             }
