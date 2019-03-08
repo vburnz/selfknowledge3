@@ -23,10 +23,8 @@ const addedFeeling= feeling => ({type: ADDED_FEELING, feeling})
  * THUNK CREATORS
  */
 export const getFeeling = (startDate, feelingType) => async dispatch => { 
-    console.log('startDate', startDate); 
     try { 
         const res = await axios.get(`/api/feeling/${feelingType}/cycle/${startDate}`)
-        console.log('res', res.data); 
         dispatch(gotFeeling(res.data || initialState.feeling))
     } 
     catch (err) { 
@@ -36,8 +34,6 @@ export const getFeeling = (startDate, feelingType) => async dispatch => {
 
 export const addFeeling = (feeling, feelingType) => async dispatch => { 
     try {
-        console.log('feelingTupe', feelingType); 
-        console.log('feeling', feeling); 
         const res = await axios.post(`/api/feeling/${feelingType}`, feeling)
         dispatch(addedFeeling(res.data))
     } catch (error) {  
