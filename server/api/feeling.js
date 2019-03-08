@@ -23,7 +23,8 @@ router.get('/:feelingType/cycle/:startDate', async(req, res, next) => {
             createdAt: { 
                 $gt: date
             }, 
-            type: req.params.feelingType
+            type: req.params.feelingType, 
+            userId: req.user.id
         }
     })
         .then(feeling => {
@@ -33,7 +34,7 @@ router.get('/:feelingType/cycle/:startDate', async(req, res, next) => {
 })
 
 router.post('/:feelingType', async(req, res, next) => { 
-    Feeling.create({...req.body, type: req.params.feelingType})
+    Feeling.create({...req.body, type: req.params.feelingType, userId: req.user.id})
         .then(feeling => { 
             res.status(201).json(feeling)
         })
