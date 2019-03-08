@@ -388,3 +388,27 @@ tbody td {
 .moonscription { 
   max-width: 500px; 
 }
+
+.outer-div
+{
+     display: table;
+     position: absolute;
+     height: 100%;
+     width: 100%;
+}
+.mid-div
+{
+     display: table-cell;
+     vertical-align: middle;
+}
+.center-div
+{
+     margin: 0 auto;
+     width: 150px;
+     height: 30px;
+}
+
+.center { 
+  display: flex; 
+  justify-content: center; 
+}

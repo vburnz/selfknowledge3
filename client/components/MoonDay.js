@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-// import P5Wrapper from 'react-p5-wrapper'
+import {Link} from 'react-router-dom'
 import NewMoon from './NewMoon'
 import FullMoon from './FullMoon'
 import P5Wrapper from './P5Wrapper'
 import sketch from '../sketches/cycle'
-import {setCycleNum} from '../store'
 import {getMoonPhase} from '../store'; 
+import {logout} from '../store'
 
 
 class MoonDay extends Component { 
@@ -62,6 +61,9 @@ class MoonDay extends Component {
                         <div>
                         <P5Wrapper  sketch={sketch} day={this.props.cycleDay + 1}/>
                         </div>
+                    <a className="center" href="#" onClick={this.props.handleClick}>
+                        <button type="button">Logout</button>
+                    </a>
                     </div>
                 </div>
                 )
@@ -92,7 +94,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({ 
-    getMoonPhase: () => dispatch(getMoonPhase())
+    getMoonPhase: () => dispatch(getMoonPhase()), 
+    handleClick: () => dispatch(logout())
  })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoonDay)

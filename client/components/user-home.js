@@ -7,12 +7,11 @@ import Greeting from './Greeting'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
+export const UserHome = ({name}) => {
 
   return (
     <div className ="welcome container">
-      <Greeting />
+      <Greeting name ={name} />
       <MoonDay />
     </div>
   )
@@ -23,7 +22,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    name: state.user.name, 
   }
 }
 
