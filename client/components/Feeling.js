@@ -23,11 +23,7 @@ class Feeling extends Component {
         if (this.props.fullMoon === 0 && this.props.newMoon === 0){ 
             await this.props.getMoonPhase(); 
         }
-        console.log('newMoon', this.props.fullMoon, this.props.newMoon); 
-        // let dateData =  this.props.newMoon); 
-        let dateDate = new Date() - (28 - this.props.fullMoon)*60*60*24*1000; 
-        console.log('datedate', dateDate)
-        console.log(dateDate); 
+        let dateDate = new Date().setHours(0, 0, 0, 0) - (29 - this.props.newMoon)*60*60*24*1000; 
         this.props.getFeeling(dateDate, this.props.type); 
     }
 
