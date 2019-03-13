@@ -24,6 +24,7 @@ const addedFeeling= feeling => ({type: ADDED_FEELING, feeling})
  */
 export const getFeeling = (startDate, feelingType) => async dispatch => { 
     try { 
+        console.log('startDate', new Date(startDate))
         const res = await axios.get(`/api/feeling/${feelingType}/cycle/${startDate}`)
         dispatch(gotFeeling(res.data || initialState.feeling))
     } 
