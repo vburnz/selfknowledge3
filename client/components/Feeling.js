@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 // import P5Wrapper from 'react-p5-wrapper'
 import P5Wrapper from './P5Wrapper'
-import {getFeeling} from '../store'
+import {getFeeling, getMoonPhase, addFeeling} from '../store'
 import sketches from '../sketches'
 import InputForm from './InputForm'
 import Table from './Table'
@@ -19,8 +19,12 @@ class Feeling extends Component {
             showTable: false, 
         }
     }
-    componentDidMount(){ 
-        this.props.getFeeling(new Date() - (28 - this.props.newMoon), this.props.type); 
+    async componentDidMount(){ 
+        if (this.props.fullMoon === 0 && this.props.newMoon === 0){ 
+            await this.props.getMoonPhase(); 
+        }
+        let dateDate = new Date().setHours(0, 0, 0, 0) - (29 - this.props.newMoon)*60*60*24*1000; 
+        this.props.getFeeling(dateDate, this.props.type); 
     }
 
     showAddModal = () => {
@@ -73,12 +77,14 @@ class Feeling extends Component {
 
 const mapStateToProps = state => ({ 
     feeling: state.feeling.feeling, 
-    newMoon: state.cycle.newMoon
+    newMoon: state.cycle.newMoon, 
+    fullMoon: state.cycle.fullMoon
 })
 
 const mapDispatchToProps = dispatch => ({ 
     getFeeling: (startDate, feelingType) => dispatch(getFeeling(startDate, feelingType)),
-    addFeeling: (feeling, feelingType) => dispatch(addFeeling(feeling, feelingType))
+    addFeeling: (feeling, feelingType) => dispatch(addFeeling(feeling, feelingType)), 
+    getMoonPhase: () => dispatch(getMoonPhase())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Feeling)); 

@@ -29,6 +29,7 @@ class Routes extends Component {
             <Route path="/mourn" component={() => <Feeling type='mourn'/>}/>
             <Route path="/intention" component={() => <Feeling type='intention'/>}/>
             <Route path="/summary" component={Summary}/>
+            <Route component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

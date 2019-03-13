@@ -3,7 +3,8 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const SET_UPCOMING_MOONS = 'GET_UPCOMING_MOONS'
+const SET_UPCOMING_MOONS = 'SET_UPCOMING_MOONS'
+const GET_UPCOMING_MOONS = 'GET_UPCOMING_MOONS'
 
 /**
  * INITIAL STATE
@@ -28,6 +29,13 @@ export const setUpcomingMoons = (newMoon, fullMoon, today) => ({
     today
 })
 
+export const getUpcomingMoons = () => ({
+    type: GET_UPCOMING_MOONS, 
+    newMoon, 
+    fullMoon, 
+    today
+})
+
 
 /**
  * THUNK CREATORS
@@ -42,11 +50,12 @@ export const getMoonPhase = () => async dispatch => {
         const year = date.getFullYear();  
         date.setHours(0, 0, 0, 0); 
         const moonData = await axios.get(`https://api.usno.navy.mil/moon/phase?date=${month}/${day}/${year}&nump=4`); 
-        console.log(moonData); 
+        console.log('moondata', moonData); 
         let newMoon; 
         let fullMoon; 
         let today = null; 
         moonData.data.phasedata.forEach(datum => { 
+            console.log('datum', datum); 
             if (datum.phase==='New Moon') newMoon = Math.floor((new Date(datum.date) - date)/86400000); 
             if (datum.phase==='Full Moon') fullMoon = Math.floor((new Date(datum.date) - date)/86400000)
         })
@@ -88,6 +97,7 @@ export default function (state = initialState, action) {
         //     return {...state, cycleNum: action.cycleNum}
         case SET_UPCOMING_MOONS: 
             return {...state, newMoon: action.newMoon, fullMoon: action.fullMoon, today: action.today, cycleDay: 28-action.newMoon}
+        case GET_UPCOMING_MOONS: 
         default: 
             return state; 
     }
